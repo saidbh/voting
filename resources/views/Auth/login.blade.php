@@ -163,8 +163,8 @@
                             <div class="alert alert-success m-0">{{ Session::get('success') }}</div>
                         @endif
                         <h1 class="mb-0">S'identifier</h1>
-                        <p>Entrez votre adresse e-mail et votre mot de passe pour accéder au panneau d'administration.</p>
-                            <form action="{{route('login')}}" method="post" enctype="multipart/form-data">
+{{--                         <p>Entrez votre adresse e-mail et votre mot de passe pour accéder au panneau d'administration.</p>
+ --}}                            <form action="{{route('login')}}" method="post" enctype="multipart/form-data">
                                 @csrf
                         <div class="form-group">
                             <label for="exampleInputEmail1">Email</label>
