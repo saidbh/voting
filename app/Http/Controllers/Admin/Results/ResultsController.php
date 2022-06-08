@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Controllers\Users\results;
+namespace App\Http\Controllers\Admin\Results;
 
-use Illuminate\Routing\Controller;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 class ResultsController extends Controller
@@ -14,7 +14,7 @@ class ResultsController extends Controller
      */
     public function index()
     {
-        return view('users.results.index');
+        //
     }
 
     /**

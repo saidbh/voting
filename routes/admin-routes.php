@@ -66,49 +66,35 @@ Route::group(['middleware'=>['auth:web','routes', 'Role:admin'],'except'=>'logou
             'destroy' => 'system-dictionary.destroy',
         ]);
     });
-    Route::group(['prefix'=>'adsl','name'=>'adsl'],function(){
-        Route::get('/',function(){return redirect('admin.dashboard');})->name('adsl');
+    Route::group(['prefix'=>'sessions','name'=>'sessions'],function(){
+        Route::resource('sessions', System\DictionaryController::class)->names([
+            'index'=>'sessions-list',
+            'create' => 'sessions-list.create',
+            'store' => 'sessions-list.store',
+            'edit' => 'sessions-list.edit',
+            'update' => 'sessions-list.update',
+            'destroy' => 'sessions-list.destroy',
+        ]);
     });
-    Route::group(['prefix'=>'fixes','name'=>'fixes'],function(){
-        Route::get('/',function(){return redirect('admin.dashboard');})->name('fixes');
+    Route::group(['prefix'=>'votes','name'=>'votes'],function(){
+        Route::resource('votes', System\DictionaryController::class)->names([
+            'index'=>'votes-list',
+            'create' => 'sessions-list.create',
+            'store' => 'sessions-list.store',
+            'edit' => 'sessions-list.edit',
+            'update' => 'sessions-list.update',
+            'destroy' => 'sessions-list.destroy',
+        ]);
     });
-    Route::group(['prefix'=>'fo-internet','name'=>'fo-internet'],function(){
-        Route::get('/',function(){return redirect('admin.dashboard');})->name('fo-internet');
+    Route::group(['prefix'=>'voting-results','name'=>'voting-results'],function(){
+        Route::resource('voting-results', System\DictionaryController::class)->names([
+            'index'=>'results-list',
+            'create' => 'sessions-list.create',
+            'store' => 'sessions-list.store',
+            'edit' => 'sessions-list.edit',
+            'update' => 'sessions-list.update',
+            'destroy' => 'sessions-list.destroy',
+        ]);
     });
-    Route::group(['prefix'=>'t-penetration','name'=>'t-penetration'],function(){
-        Route::get('/',function(){return redirect('admin.dashboard');})->name('t-penetration');
-    });
-    Route::group(['prefix'=>'mobile-prepaid-b','name'=>'mobile-prepaid-b'],function(){
-        Route::get('/',function(){return redirect('admin.dashboard');})->name('mobile-prepaid-b');
-    });
-    Route::group(['prefix'=>'mobile-prepaid-n','name'=>'mobile-prepaid-n'],function(){
-        Route::get('/',function(){return redirect('admin.dashboard');})->name('mobile-prepaid-n');
-    });
-    Route::group(['prefix'=>'mobile-bills','name'=>'mobile-bills'],function(){
-        Route::get('/',function(){return redirect('admin.dashboard');})->name('mobile-bills');
-    });
-    Route::group(['prefix'=>'3Gkey','name'=>'3Gkey'],function(){
-        Route::get('/',function(){return redirect('admin.dashboard');})->name('3Gkey');
-    });
-    Route::group(['prefix'=>'netbox','name'=>'netbox'],function(){
-        Route::get('/',function(){return redirect('admin.dashboard');})->name('netbox');
-    });
-    Route::group(['prefix'=>'m2m','name'=>'m2m'],function(){
-        Route::get('/',function(){return redirect('admin.dashboard');})->name('m2m');
-    });
-    Route::group(['prefix'=>'waffi','name'=>'waffi'],function(){
-        Route::get('/',function(){return redirect('admin.dashboard');})->name('waffi');
-    });
-    Route::group(['prefix'=>'rapido2020','name'=>'rapido2020'],function(){
-        Route::get('/',function(){return redirect('admin.dashboard');})->name('rapido2020');
-    });
-    Route::group(['prefix'=>'other-th','name'=>'other-th'],function(){
-        Route::get('/',function(){return redirect('admin.dashboard');})->name('other-th');
-    });
-    Route::group(['prefix'=>'portability-IN-prepaid','name'=>'portability-IN-prepaid'],function(){
-        Route::get('/',function(){return redirect('admin.dashboard');})->name('portability-IN-prepaid');
-    });
-    Route::group(['prefix'=>'portability-IN-mobile-bill','name'=>'portability-IN-mobile-bill'],function(){
-        Route::get('/',function(){return redirect('admin.dashboard');})->name('portability-IN-mobile-bill');
-    });
+
 });

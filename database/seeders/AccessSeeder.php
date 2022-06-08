@@ -19,6 +19,9 @@ class AccessSeeder extends Seeder
             array('id' => '1','categories_id' => '1','roles_id' => '1','able' => '1'),
             array('id' => '2','categories_id' => '2','roles_id' => '1','able' => '1'),
             array('id' => '3','categories_id' => '3','roles_id' => '1','able' => '1'),
+            array('id' => '4','categories_id' => '4','roles_id' => '1','able' => '1'),
+            array('id' => '5','categories_id' => '5','roles_id' => '1','able' => '1'),
+            array('id' => '6','categories_id' => '6','roles_id' => '1','able' => '1'),
         );
 
         DB::table('access')->insert($access);

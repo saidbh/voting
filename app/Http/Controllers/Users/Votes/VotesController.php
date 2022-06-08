@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Users\Votes;
 
-use App\Http\Controllers\Controller;
+use Illuminate\Routing\Controller;
 use Illuminate\Http\Request;
 
 class VotesController extends Controller
@@ -14,7 +14,7 @@ class VotesController extends Controller
      */
     public function index()
     {
-        //
+        return view('users.votes.index');
     }
 
     /**

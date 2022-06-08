@@ -22,21 +22,21 @@
                     <div class="container">
                         <div class="row text-center">
                             <div class="col-md-4">
-                                <a href="#">
+                                <a href="{{ route('condidates-list') }}">
                                 <div class="text-center">
                                     <img src="{{ asset('assets/images/session.jpg') }}" class="rounded-circle" width="200px" height="200px" alt="Sessions">
                                   </div>
                                 </a>
                             </div>
                             <div class="col-md-4">
-                                <a href="#">
+                                <a href="{{ route('voting-list') }}">
                                 <div class="text-center">
                                     <img src="{{ asset('assets/images/vote.jpg') }}" class="rounded-circle" width="200px" height="200px" alt="Vote">
                                   </div>
                                 </a>
                             </div>
                             <div class="col-md-4">
-                                <a href="#">
+                                <a href="{{ route('result-list') }}">
                                 <div class="text-center">
                                     <img src="{{ asset('assets/images/result.jpg') }}" class="rounded-circle" width="200px" height="200px" alt="Resultats">
                                   </div>

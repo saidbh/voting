@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Users\results;
+namespace App\Http\Controllers\Admin\Sessions;
 
-use Illuminate\Routing\Controller;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class ResultsController extends Controller
+class SessionsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,7 @@ class ResultsController extends Controller
      */
     public function index()
     {
-        return view('users.results.index');
+        //
     }
 
     /**

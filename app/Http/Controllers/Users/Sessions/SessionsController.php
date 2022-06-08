@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Users\Sessions;
 
-use App\Http\Controllers\Controller;
+use Illuminate\Routing\Controller;
 use Illuminate\Http\Request;
 
 class SessionsController extends Controller
@@ -14,7 +14,7 @@ class SessionsController extends Controller
      */
     public function index()
     {
-        //
+        return view('users.sessions.index');
     }
 
     /**
