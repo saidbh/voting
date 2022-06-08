@@ -67,7 +67,7 @@ Route::group(['middleware'=>['auth:web','routes', 'Role:admin'],'except'=>'logou
         ]);
     });
     Route::group(['prefix'=>'sessions','name'=>'sessions'],function(){
-        Route::resource('sessions', System\DictionaryController::class)->names([
+        Route::resource('sessions', Sessions\SessionsController::class)->names([
             'index'=>'sessions-list',
             'create' => 'sessions-list.create',
             'store' => 'sessions-list.store',
@@ -77,7 +77,7 @@ Route::group(['middleware'=>['auth:web','routes', 'Role:admin'],'except'=>'logou
         ]);
     });
     Route::group(['prefix'=>'votes','name'=>'votes'],function(){
-        Route::resource('votes', System\DictionaryController::class)->names([
+        Route::resource('votes', Voting\VotingController::class)->names([
             'index'=>'votes-list',
             'create' => 'sessions-list.create',
             'store' => 'sessions-list.store',
@@ -87,7 +87,7 @@ Route::group(['middleware'=>['auth:web','routes', 'Role:admin'],'except'=>'logou
         ]);
     });
     Route::group(['prefix'=>'voting-results','name'=>'voting-results'],function(){
-        Route::resource('voting-results', System\DictionaryController::class)->names([
+        Route::resource('voting-results', Results\ResultsController::class)->names([
             'index'=>'results-list',
             'create' => 'sessions-list.create',
             'store' => 'sessions-list.store',

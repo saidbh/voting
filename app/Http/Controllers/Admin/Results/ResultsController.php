@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Admin\Results;
 
-use App\Http\Controllers\Controller;
+use Illuminate\Routing\Controller;
 use Illuminate\Http\Request;
 
 class ResultsController extends Controller
@@ -14,7 +14,7 @@ class ResultsController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.results.index');
     }
 
     /**
