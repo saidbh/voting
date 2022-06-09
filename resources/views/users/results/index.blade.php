@@ -21,64 +21,8 @@
                 <div class="iq-card-body">
                     <div class="container">
                         <div class="row">
-                            <div class="col-md-4">
-                                <label for="" class="form-label">--</label>
-                                <select class="form-select" aria-label="Default select example">
-                                    <option selected>Open this select menu</option>
-                                    <option value="1">One</option>
-                                    <option value="2">Two</option>
-                                    <option value="3">Three</option>
-                                  </select>
-                            </div>
-                            <div class="col-md-4">
-                                <label for="" class="form-label">--</label>
-                                <select class="form-select" aria-label="Default select example">
-                                    <option selected>Open this select menu</option>
-                                    <option value="1">One</option>
-                                    <option value="2">Two</option>
-                                    <option value="3">Three</option>
-                                  </select>
-                            </div>
-                            <div class="col-md-4">
-                                <label for="" class="form-label">--</label>
-                                <select class="form-select" aria-label="Default select example">
-                                    <option selected>Open this select menu</option>
-                                    <option value="1">One</option>
-                                    <option value="2">Two</option>
-                                    <option value="3">Three</option>
-                                  </select>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="table-responsive table-sm">
-                                    <table id="sessions-table" class="table table-striped table-bordered mt-4" role="grid" aria-describedby="user-list-page-info">
-                                      <thead>
-                                        <tr class="text-center">
-                                          <th>ID</th>
-                                          <th>Nom</th>
-                                          <th>Prénom</th>
-                                          <th>Agence</th>
-                                          <th>Cour</th>
-                                          <th>Status</th>
-                                          <th>Action</th>
-                                        </tr>
-                                      </thead>
-                                      <tbody>
-                                          <tr>
-                                              <td></td>
-                                              <td></td>
-                                              <td></td>
-                                              <td></td>
-                                              <td></td>
-                                              <td></td>
-                                              <td></td>
-                                          </tr>
-                                      </tbody>
-                                    </table>
-                                  </div>
+                            <div class="col">
+                                <div class="alert alert-success">your have been accepted !</div>
                             </div>
                         </div>
                     </div>

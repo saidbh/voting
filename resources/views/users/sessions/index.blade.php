@@ -8,7 +8,7 @@
                     <div class="iq-header-title w-100">
                         <div class="row">
                             <div class="col-md-12 d-flex flex-row align-items-center justify-content-center">
-                          <h4 class="card-title m-0">Sessions</h4>
+                          <h4 class="card-title m-0">Condidat</h4>
 {{--                                 <div class="d-flex flex-row">
                                     <a href="#" class="btn mx-1 btn-success">PDF</a>
                                     <a href="#" class="btn btn-success">Excel</a>

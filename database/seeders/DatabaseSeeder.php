@@ -21,5 +21,12 @@ class DatabaseSeeder extends Seeder
         $this->call(SubCategoriesSeeder::class);
         $this->call(AccessSeeder::class);
         $this->call(PermissionsSeeder::class);
+        $this->call(commissionsSeeder::class);
+        $this->call(displinesSeeder::class);
+        $this->call(universitySeeder::class);
+        $this->call(establishmentsSeeder::class);
+        $this->call(gradesSeeder::class);
+        $this->call(regionsSeeder::class);
+        $this->call(userTypeSeeder::class);
     }
 }
