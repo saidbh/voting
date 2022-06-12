@@ -33,11 +33,9 @@ class VotesController extends Controller
         $voters = compositions::where('users_id',Auth::id())->get();
         foreach($voters as $voter)
         {
-            if(
-                Date('Y-m-d',strtotime($voter->condidate->sessions->date_vote_start)) <= Carbon::now()->format('Y-m-d')
-                &&
-                Date('Y-m-d',strtotime($voter->condidate->sessions->date_vote_end)) >= Carbon::now()->format('Y-m-d')
-                )
+            if(Date('Y-m-d', strtotime($voter->condidate->sessions->date_vote_start)) >= Carbon::now()->format('Y-m-d')
+             && 
+             Carbon::now()->format('Y-m-d') <= Date('Y-m-d', strtotime($voter->condidate->sessions->date_vote_end)))
             {
                 Session::flash('error', "Vous avez deja voté !");
                 return redirect()->back()->withInput();
@@ -53,7 +51,9 @@ class VotesController extends Controller
             Session::flash('error', "Vote pas encore commencer !");
             return redirect()->back()->withInput();
         }
-        elseif(Date('Y-m-d',strtotime($sessions->date_vote_start)) >= Carbon::now()->format('Y-m-d') && Carbon::now()->format('Y-m-d') <= Date('Y-m-d',strtotime($sessions->date_vote_end)))
+        if(Carbon::now()->format('Y-m-d') <= Date('Y-m-d', strtotime($sessions->date_vote_start))
+        &&
+        Carbon::now()->format('Y-m-d') <= Date('Y-m-d', strtotime($sessions->date_vote_end)))
         {
             return view('users.votes.index',compact('sessionslist','commissionslist','displineslist'));
         }
