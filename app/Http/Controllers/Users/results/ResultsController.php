@@ -22,7 +22,7 @@ class ResultsController extends Controller
     public function index()
     {
         $condidate = condidate::where('users_id',Auth::id())->first();
-        $sessions = sessions::where('date_result_start','>=',Carbon::now()->format('Y-m-d'))->first();
+        $sessions = sessions::where('date_result_start','<=',Carbon::now()->format('Y-m-d'))->first();
         if(!$condidate)
         {
             Session::flash('error', "Vous n'ete pas un condidat !");
@@ -33,7 +33,7 @@ class ResultsController extends Controller
             Session::flash('error', "Vote pas encore commencer !");
             return redirect()->back()->withInput();
         }
-        elseif(Date('Y-m-d',strtotime($sessions->date_result_start)) >= Carbon::now()->format('Y-m-d') && Carbon::now()->format('Y-m-d') <= Date('Y-m-d',strtotime($sessions->date_result_end)))
+        elseif(Date('Y-m-d',strtotime($sessions->date_result_start)) <= Carbon::now()->format('Y-m-d') && Carbon::now()->format('Y-m-d') <= Date('Y-m-d',strtotime($sessions->date_result_end)))
         {
             return view('users.results.index');
         }else

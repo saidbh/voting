@@ -43,13 +43,15 @@ class SessionsController extends Controller
             Session::flash('error', "Pas de sessions disponible !");
             return redirect()->back()->withInput();
         }
-        if(Carbon::now()->between(Carbon::createFromFormat('Y-m-d', $sessions->date_deb_sess), Carbon::createFromFormat('Y-m-d', $sessions->date_fin_sess)))
+        if(Date('Y-m-d') >= Date('Y-m-d', strtotime($sessions->date_deb_sess)
+        &&
+          Date('Y-m-d') <= Date('Y-m-d', strtotime($sessions->date_fin_sess))))
         {
             return view('users.sessions.index',compact('condidateSessions','condidatecommissions','condidatedisplines','establishsment','regions','type','grades','contacts','condidate'));
         }
         else
         {
-            Session::flash('error', "Période d'inscription au condidature est expirer !");
+            Session::flash('error', "Période d'inscription au condidature est expirer ou pas encore commencer !");
             return redirect()->back()->withInput();
         } 
     }
