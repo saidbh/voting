@@ -7,6 +7,7 @@ use App\Models\commissions;
 use App\Models\disciplines;
 use App\Models\condidate;
 use App\Models\compositions;
+use App\Models\voteResult;
 use Carbon\Carbon;
 use Illuminate\Routing\Controller;
 use Illuminate\Http\Request;
@@ -50,7 +51,27 @@ class ResultsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validator = Validator::make($request->all(),[
+            'candidate' => 'bail|required',
+            'vote_number' => 'bail|required',
+            'vote_result' => 'bail|required',
+        ]);
+        if($validator->fails()){
+            Session::flash('error',$validator->errors()->first());
+            return redirect()->back()->withInput();
+        }
+        try{
+            $status = new voteResult();
+            $status->candidate_id = $request->candidate; 
+            $status->vote_number = $request->vote_number;
+            $status->vote_result = $request->vote_result;
+            $status->save();
+        }catch(QueryException $e){
+            Session::flash('error', $e->getMessage());
+            return redirect()->back()->withInput();
+        }
+        Session::flash('success', "Resultat de Candidat envoyer avec succés");
+        return redirect()->route('results-list');
     }
 
     /**
@@ -127,6 +148,7 @@ class ResultsController extends Controller
                     'cin' => $condidate->cin,
                     'cnrps' => $condidate->cnrps,
                     'votesNumber' => $votesCount,
+                    'status' => $condidate->statusCandidat?$condidate->statusCandidat->id:null,
                 ]); 
             }
             return response()->json([

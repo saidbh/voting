@@ -3,6 +3,16 @@
 <div class="content-page">
     <div class="container-fluid">
         <div class="row">
+            <div class="col-sm-12">
+                @if (Session::has('error'))
+                    <div class="alert alert-danger">{{ Session::get('error') }}</div>
+                @endif
+                @if (Session::has('success'))
+                    <div class="alert alert-success">{{ Session::get('success') }}</div>
+                @endif
+            </div>
+        </div>
+        <div class="row">
             <div class="iq-card">
                 <div class="iq-card-header d-flex justify-content-between">
                     <div class="iq-header-title w-100">
@@ -152,20 +162,116 @@
             if(data.results.length != 0)
             {
                 data.results.forEach((result, index) => {
-              $("#vote-table").find('tbody')
-              .append(
-                $('<tr>').append(
-                  $('<td>').addClass('text-center').text(index+1),
-                  $('<td>').addClass('text-center').text(result.firstname),
-                  $('<td>').addClass('text-center').text(result.lastname),
-                  $('<td>').addClass('text-center').text(result.ar_establishment),
-                  $('<td>').addClass('text-center').text(result.cin),
-                  $('<td>').addClass('text-center').text(result.cnrps),
-                  $('<td>').addClass('text-center').text(result.votesNumber),
-/*                   $('<td>').addClass('text-center').html('
-                    '), */
-                )
-              )
+                    console.log(result.status);
+                    if(result.status == null)
+                    {
+                    $("#vote-table").find('tbody')
+                    .append(
+                        $('<tr>').append(
+                        $('<td>').addClass('text-center').text(index+1),
+                        $('<td>').addClass('text-center').text(result.firstname),
+                        $('<td>').addClass('text-center').text(result.lastname),
+                        $('<td>').addClass('text-center').text(result.ar_establishment),
+                        $('<td>').addClass('text-center').text(result.cin),
+                        $('<td>').addClass('text-center').text(result.cnrps),
+                        $('<td>').addClass('text-center').text(result.votesNumber),
+                        $('<td>').addClass('text-center').html(
+                            '<div class="flex align-items-center list-user-action">'+
+                                '<span data-toggle="modal" data-target="#accept'+ result.id +'">'+
+                                '<a data-toggle="tooltip" data-placement="top" title="Accepter" href="#"><i class="ri-checkbox-circle-fill ri-2x" style="color:green"></i></a>'+
+                                '</span>'+
+                                '<div class="modal fade" id="accept'+ result.id +'" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">'+
+                                '<div class="modal-dialog" role="document">'+
+                                    '<div class="modal-content">'+
+                                    '<div class="modal-header">'+
+                                        '<h5 class="modal-title" id="exampleModalLabel">Accepter candidat</h5>'+
+                                        '<button type="button" class="close" data-dismiss="modal" aria-label="Close">'+
+                                        '<span aria-hidden="true">&times;</span>'+
+                                        '</button>'+
+                                    '</div>'+
+                                    '<form action="{{ route('results-list.store') }}" method="POST">'+
+                                        '@csrf'+
+                                    '<div class="modal-body">'+
+                                        'Voulez vous vraiment accepter ce candidat ?'+
+                                        '<input type="hidden" class="form-control" name="candidate" value="'+ result.id +'" required>'+
+                                        '<input type="hidden" class="form-control" name="vote_number" value="'+ result.votesNumber +'" required>'+
+                                        '<input type="hidden" class="form-control" name="vote_result" value="1" required>'+
+                                    '</div>'+
+                                    '<div class="modal-footer">'+
+                                        '<button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>'+
+                                        '<button type="submit" class="btn btn-success">Confirmer</button>'+
+                                    '</div>'+
+                                    '</form>'+
+                                    '</div>'+
+                                '</div>'+
+                                '</div>'+
+                                '<span data-toggle="modal" data-target="#deny'+ result.id +'">'+
+                                    '<a data-toggle="tooltip" data-placement="top" title="Refusé" href="#"><i class="ri-close-circle-fill ri-2x" style="color:red"></i></a>'+
+                                '</span>'+
+                                '<div class="modal fade" id="deny'+ result.id +'" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">'+
+                                '<div class="modal-dialog" role="document">'+
+                                    '<div class="modal-content">'+
+                                    '<div class="modal-header">'+
+                                        '<h5 class="modal-title" id="exampleModalLabel">Rejeter candidat</h5>'+
+                                        '<button type="button" class="close" data-dismiss="modal" aria-label="Close">'+
+                                        '<span aria-hidden="true">&times;</span>'+
+                                        '</button>'+
+                                    '</div>'+
+                                    '<form action="{{ route('results-list.store') }}" method="POST">'+
+                                        '@csrf'+
+                                    '<div class="modal-body">'+
+                                        'Voulez vous vraiment Rejeter ce candidat ?'+
+                                        '<input type="hidden" class="form-control" name="candidate" value="'+ result.id +'" required>'+
+                                        '<input type="hidden" class="form-control" name="vote_number" value="'+ result.votesNumber +'" required>'+
+                                        '<input type="hidden" class="form-control" name="vote_result" value="0" required>'+
+                                    '</div>'+
+                                    '<div class="modal-footer">'+
+                                        '<button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>'+
+                                        '<button type="submit" class="btn btn-danger">Rejeter</button>'+
+                                    '</div>'+
+                                    '</form>'+
+                                    '</div>'+
+                                '</div>'+
+                                '</div>'+
+                            '</div>'
+                            ),
+                        )
+                    )
+                    }else if(result.status == 1)
+                    {
+                        $("#vote-table").find('tbody')
+                    .append(
+                        $('<tr>').append(
+                        $('<td>').addClass('text-center').text(index+1),
+                        $('<td>').addClass('text-center').text(result.firstname),
+                        $('<td>').addClass('text-center').text(result.lastname),
+                        $('<td>').addClass('text-center').text(result.ar_establishment),
+                        $('<td>').addClass('text-center').text(result.cin),
+                        $('<td>').addClass('text-center').text(result.cnrps),
+                        $('<td>').addClass('text-center').text(result.votesNumber),
+                        $('<td>').addClass('text-center').html(
+                            '<span class="badge badge-success">Accepter</span>'
+                            )
+                        )
+                    )
+                    }else
+                    {
+                        $("#vote-table").find('tbody')
+                    .append(
+                        $('<tr>').append(
+                        $('<td>').addClass('text-center').text(index+1),
+                        $('<td>').addClass('text-center').text(result.firstname),
+                        $('<td>').addClass('text-center').text(result.lastname),
+                        $('<td>').addClass('text-center').text(result.ar_establishment),
+                        $('<td>').addClass('text-center').text(result.cin),
+                        $('<td>').addClass('text-center').text(result.cnrps),
+                        $('<td>').addClass('text-center').text(result.votesNumber),
+                        $('<td>').addClass('text-center').html(
+                            '<span class="badge badge-danger">Rejeté</span>'
+                            )
+                        )
+                    )
+                    }
             });
             }else
             {

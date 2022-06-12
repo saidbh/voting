@@ -80,4 +80,8 @@ class condidate extends Model
     {
         return $this->belongsTo(compositions::class, 'id','condidate_id');
     }
+    public function statusCandidat()
+    {
+        return $this->belongsTo(voteResult::class, 'id', 'candidate_id');
+    }
 }
