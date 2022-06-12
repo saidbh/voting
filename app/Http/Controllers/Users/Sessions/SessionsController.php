@@ -36,14 +36,14 @@ class SessionsController extends Controller
         $establishsment = establishments::all();
         $condidateSessions = sessions::where('date_deb_sess','>=',Carbon::now()->format('Y-m-d'))->get();
         $contacts = contacts::where('users_id',Auth::id())->first();
-        $sessions = sessions::where('date_deb_sess','>=',Carbon::now()->format('Y-m-d'))->first();
+        $sessions = sessions::where('date_deb_sess','<=',Carbon::now()->format('Y-m-d'))->first();
         $condidate = condidate::where('users_id',Auth::id())->first();
         if(!$sessions)
         {
             Session::flash('error', "Pas de sessions disponible !");
             return redirect()->back()->withInput();
         }
-        elseif(Date('Y-m-d',strtotime($sessions->date_deb_sess)) >= Carbon::now()->format('Y-m-d') && Carbon::now()->format('Y-m-d') <= Date('Y-m-d',strtotime($sessions->date_fin_sess)))
+        if($check = Carbon::now()->between(Carbon::createFromFormat('Y-m-d', $sessions->date_deb_sess), Carbon::createFromFormat('Y-m-d', $sessions->date_fin_sess)))
         {
             return view('users.sessions.index',compact('condidateSessions','condidatecommissions','condidatedisplines','establishsment','regions','type','grades','contacts','condidate'));
         }

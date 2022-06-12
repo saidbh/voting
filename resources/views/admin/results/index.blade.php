@@ -148,7 +148,6 @@
             discipline:discipline
         },
         success: function (data) {
-            console.log(data.results)
             $("#vote-table").find('tbody').empty();
             if(data.results.length != 0)
             {
@@ -163,7 +162,8 @@
                   $('<td>').addClass('text-center').text(result.cin),
                   $('<td>').addClass('text-center').text(result.cnrps),
                   $('<td>').addClass('text-center').text(result.votesNumber),
-                  $('<td>').addClass('text-center').html(''),
+/*                   $('<td>').addClass('text-center').html('
+                    '), */
                 )
               )
             });
