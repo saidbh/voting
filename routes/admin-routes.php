@@ -85,6 +85,7 @@ Route::group(['middleware'=>['auth:web','routes', 'Role:admin'],'except'=>'logou
             'update' => 'votes-list.update',
             'destroy' => 'votes-list.destroy',
         ]);
+        Route::post('/list/vote/count',[Voting\VotingController::class,'getVotesResults'])->name('votes-count-result');
     });
     Route::group(['prefix'=>'voting-results','name'=>'voting-results'],function(){
         Route::resource('voting-results', Results\ResultsController::class)->names([

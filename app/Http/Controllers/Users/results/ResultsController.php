@@ -3,12 +3,14 @@
 namespace App\Http\Controllers\Users\results;
 
 use App\Models\sessions;
+use App\Models\condidate;
 use Illuminate\Routing\Controller;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Auth;
 
 class ResultsController extends Controller
 {
@@ -19,8 +21,19 @@ class ResultsController extends Controller
      */
     public function index()
     {
-        $sessions = sessions::where('date_result_end','<',Carbon::now())->where('date_deb_sess','>=',Carbon::now())->first();
-        if($sessions->date_result_start >= Carbon::now() && Carbon::now() <= $sessions->date_result_end)
+        $condidate = condidate::where('users_id',Auth::id())->first();
+        $sessions = sessions::where('date_result_start','>=',Carbon::now()->format('Y-m-d'))->first();
+        if(!$condidate)
+        {
+            Session::flash('error', "Vous n'ete pas un condidat !");
+            return redirect()->back()->withInput();
+        } 
+        if(!$sessions)
+        {
+            Session::flash('error', "Vote pas encore commencer !");
+            return redirect()->back()->withInput();
+        }
+        elseif(Date('Y-m-d',strtotime($sessions->date_result_start)) >= Carbon::now()->format('Y-m-d') && Carbon::now()->format('Y-m-d') <= Date('Y-m-d',strtotime($sessions->date_result_end)))
         {
             return view('users.results.index');
         }else
