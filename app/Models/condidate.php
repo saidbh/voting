@@ -76,4 +76,8 @@ class condidate extends Model
     {
         return $this->belongsTo(sessions::class, 'sessions_id','id');
     }
+    public function compositions()
+    {
+        return $this->belongsTo(compositions::class, 'id','condidate_id');
+    }
 }

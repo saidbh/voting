@@ -96,7 +96,7 @@ class VotingController extends Controller
     {
         //
     }
-    public function getVotesResults(Request $request)
+    public function getCondidatesResults(Request $request)
     {
         $validator = Validator::make($request->all(),[
             'sesssion' => 'bail|required',

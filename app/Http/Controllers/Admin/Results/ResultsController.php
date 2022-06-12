@@ -2,8 +2,19 @@
 
 namespace App\Http\Controllers\Admin\Results;
 
+use App\Models\sessions;
+use App\Models\commissions;
+use App\Models\disciplines;
+use App\Models\condidate;
+use App\Models\compositions;
+use Carbon\Carbon;
 use Illuminate\Routing\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Database\QueryException;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Response;
 
 class ResultsController extends Controller
 {
@@ -14,7 +25,11 @@ class ResultsController extends Controller
      */
     public function index()
     {
-        return view('admin.results.index');
+        $sessionslist = sessions::all();
+        $commissionslist = commissions::all();
+        $displineslist = disciplines::all();
+        $condidates = condidate::all();
+        return view('admin.results.index',compact('sessionslist','commissionslist','displineslist'));
     }
 
     /**
@@ -81,5 +96,46 @@ class ResultsController extends Controller
     public function destroy($id)
     {
         //
+    }
+    public function getVotesResults(Request $request)
+    {
+        $validator = Validator::make($request->all(),[
+            'sesssion' => 'bail|required',
+            'commission' => 'bail|required',
+            'discipline' => 'bail|required',
+        ]);
+        if($validator->fails()){
+            return response()->json([
+                'Error' => $validator->errors()->first()
+            ], 500);
+        }
+        try{
+            $condidates = condidate::where('sessions_id',$request->sesssion)
+            ->where('commissions_id',$request->commission)
+            ->where('disciplines_id',$request->discipline)
+            ->get();
+            $data = array();
+            foreach($condidates as $condidate)
+            {
+                $votesCount = compositions::where('condidate_id',$condidate->id)->count('vote_number');
+                  array_push($data,[
+                    'id' => $condidate->id,
+                    'firstname' => $condidate->first_name,
+                    'lastname' => $condidate->last_name,
+                    'ar_establishment' => $condidate->establishement->ar_name,
+                    'fr_establishment' => $condidate->establishement->fr_name,
+                    'cin' => $condidate->cin,
+                    'cnrps' => $condidate->cnrps,
+                    'votesNumber' => $votesCount,
+                ]); 
+            }
+            return response()->json([
+                'results' => $data
+            ], 200);
+        }catch(QueryException $e){
+            return response()->json([
+                'Error' => $e
+            ], 500);
+        }
     }
 }
