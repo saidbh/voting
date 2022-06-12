@@ -79,21 +79,21 @@ Route::group(['middleware'=>['auth:web','routes', 'Role:admin'],'except'=>'logou
     Route::group(['prefix'=>'votes','name'=>'votes'],function(){
         Route::resource('votes', Voting\VotingController::class)->names([
             'index'=>'votes-list',
-            'create' => 'sessions-list.create',
-            'store' => 'sessions-list.store',
-            'edit' => 'sessions-list.edit',
-            'update' => 'sessions-list.update',
-            'destroy' => 'sessions-list.destroy',
+            'create' => 'votes-list.create',
+            'store' => 'votes-list.store',
+            'edit' => 'votes-list.edit',
+            'update' => 'votes-list.update',
+            'destroy' => 'votes-list.destroy',
         ]);
     });
     Route::group(['prefix'=>'voting-results','name'=>'voting-results'],function(){
         Route::resource('voting-results', Results\ResultsController::class)->names([
             'index'=>'results-list',
-            'create' => 'sessions-list.create',
-            'store' => 'sessions-list.store',
-            'edit' => 'sessions-list.edit',
-            'update' => 'sessions-list.update',
-            'destroy' => 'sessions-list.destroy',
+            'create' => 'results-list.create',
+            'store' => 'results-list.store',
+            'edit' => 'results-list.edit',
+            'update' => 'results-list.update',
+            'destroy' => 'results-list.destroy',
         ]);
     });
 

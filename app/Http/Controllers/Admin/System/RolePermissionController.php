@@ -154,9 +154,7 @@ class RolePermissionController extends Controller
                 }
             }
         }
-
         $subcategoriesPermissions = array();
-
         foreach ($subcategories as $subcategory) {
             foreach ($permissions as $permission) {
                 if($subcategory->id === $permission->sub_categories_id){

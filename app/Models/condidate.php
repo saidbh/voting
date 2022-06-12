@@ -49,7 +49,8 @@ class condidate extends Model
         'users_id', 
         'commissions_id', 
         'grades_id', 
-        'disciplines_id', 
+        'disciplines_id',
+        'establishments_id', 
         'first_name', 
         'last_name', 
         'email', 
@@ -67,4 +68,12 @@ class condidate extends Model
         'created_at', 
         'updated_at'
     ];
+    public function establishement()
+    {
+        return $this->belongsTo(establishments::class, 'establishments_id','id');
+    }
+    public function sessions()
+    {
+        return $this->belongsTo(sessions::class, 'sessions_id','id');
+    }
 }

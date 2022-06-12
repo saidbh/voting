@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin\System;
 
 use App\Http\Middleware\Role;
-use App\Models\Contacts;
+use App\Models\contacts;
 use App\Models\Roles;
 use App\Models\User;
 use App\Models\UserRole;
@@ -36,7 +36,7 @@ class AssignRoleController extends Controller
     public function create()
     {
         $roles = Roles::where('name','!=','superadmin')->get();
-        $contacts = Contacts::all();
+        $contacts = contacts::all();
         return view("admin.system.assign-role.create", compact('roles','contacts'));
     }
 
@@ -70,9 +70,8 @@ class AssignRoleController extends Controller
             return redirect()->back()->withInput();
         }
         try {
-            $contact = Contacts::where('id', $request->assignUser)->first();
+            $contact = contacts::where('id', $request->assignUser)->first();
             $user = new User();
-            $user->agencies_id = null;
             $user->email = $contact->email;
             $user->phone = $contact->phone;
             $user->password = Hash::make($request->password);
@@ -114,7 +113,7 @@ class AssignRoleController extends Controller
      */
     public function edit($id)
     {
-        $contact = Contacts::where('users_id',$id)->first();
+        $contact = contacts::where('users_id',$id)->first();
         $user = User::find($id);
         $roles = Roles::where('name','!=','superadmin')->get();
         if(!$user){

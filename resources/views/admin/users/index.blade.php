@@ -38,62 +38,117 @@
                                                                     <div class="col-md-4">
                                                                         <div class="form-group">
                                                                             <label for="firstName">Nom</label>
-                                                                            <input type="text" class="form-control" id="firstName" name="firstName" aria-describedby="firstName" value="{{old('firstName')}}">
+                                                                            <input type="text" class="form-control" id="firstName" name="firstName" aria-describedby="firstName" value="{{old('firstName')}}" required>
                                                                         </div>
                                                                     </div>
                                                                     <div class="col-md-4">
                                                                         <div class="form-group">
                                                                             <label for="lastName">Prénom</label>
-                                                                            <input type="text" class="form-control" id="lastName" name="lastName" aria-describedby="firstName" value="{{ old('lastName') }}">
+                                                                            <input type="text" class="form-control" id="lastName" name="lastName" aria-describedby="firstName" value="{{ old('lastName') }}" required>
                                                                         </div>
                                                                     </div>
                                                                     <div class="col-md-4">
                                                                         <div class="form-group">
                                                                             <label for="email">E-mail</label>
-                                                                            <input type="email" class="form-control" id="email" name="email" aria-describedby="email" value="{{ old('email') }}">
+                                                                            <input type="email" class="form-control" id="email" name="email" aria-describedby="email" value="{{ old('email') }}" required>
                                                                         </div>
                                                                     </div>
                                                                 </div>
                                                                 <div class="row">
                                                                     <div class="col-md-4">
                                                                         <div class="form-group">
-                                                                            <label for="phone">téléphone</label>
-                                                                            <input type="text" class="form-control" id="phone"  name="phone" aria-describedby="phone" value="{{ old('phone') }}">
+                                                                            <label for="cin">CIN</label>
+                                                                            <input type="number" class="form-control" id="cin" name="cin" aria-describedby="cin" value="{{ old('cin') }}" required>
                                                                         </div>
                                                                     </div>
                                                                     <div class="col-md-4">
                                                                         <div class="form-group">
-                                                                            <label for="gender">Genre</label>
-                                                                            <select class="form-control" id="gender" name="gender">
-                                                                                <option value="Male">Homme</option>
-                                                                                <option value="Female">Femme</option>
+                                                                            <label for="cnrps">CNRPS</label>
+                                                                            <input type="text" class="form-control" id="cnrps" name="cnrps" aria-describedby="cnrps" value="{{ old('cnrps') }}" required>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-4">
+                                                                        <div class="form-group">
+                                                                            <label for="type">Position</label>
+                                                                            <select class="form-control" id="type" name="type" required>
+                                                                                @foreach ($type as $types)
+                                                                                <option value="{{ $types->id }}">{{ $types->name }}</option>
+                                                                                @endforeach
+                                                                            </select>                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="col-md-4">
+                                                                        <div class="form-group">
+                                                                            <label for="establishment">Etablissement</label>
+                                                                            <select class="form-control" id="establishment" name="establishment" required>
+                                                                                @foreach ($establishsment as $estab)
+                                                                                <option value="{{ $estab->id }}">{{ $estab->fr_name }} {{ $estab->ar_name }}</option>
+                                                                                @endforeach
                                                                             </select>
                                                                         </div>
                                                                     </div>
                                                                     <div class="col-md-4">
                                                                         <div class="form-group">
-                                                                            <label for="birthday">Date de naissance</label>
-                                                                            <input type="date" class="form-control" id="birthday" name="birthday" aria-describedby="birthday" value="{{ old('birthday') }}">
+                                                                            <label for="grade">Grade</label>
+                                                                            <select class="form-control" id="grade" name="grade" required>
+                                                                                @foreach ($grades as $grade)
+                                                                                <option value="{{ $grade->id }}">{{ $grade->fr_name }} {{ $grade->ar_name }}</option>
+                                                                                @endforeach
+                                                                            </select>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-4">
+                                                                        <div class="form-group">
+                                                                            <label for="date_grade">date grade</label>
+                                                                            <input type="date" class="form-control" id="date_grade"  name="date_grade" aria-describedby="date_grade" value="{{ old('date_grade') }}" required>
                                                                         </div>
                                                                     </div>
                                                                 </div>
                                                                 <div class="row">
                                                                     <div class="col-md-4">
                                                                         <div class="form-group">
-                                                                            <label for="address">Adresse</label>
-                                                                            <input type="text" class="form-control" id="address" name="address" aria-describedby="address" value="{{ old('address') }}">
+                                                                            <label for="date_recrutement">Date recrutement</label>
+                                                                            <input type="date" class="form-control" id="date_recrutement"  name="date_recrutement" aria-describedby="date_recrutement" value="{{ old('date_recrutement') }}" required>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-4">
+                                                                       <div class="form-group">
+                                                                            <label for="phone">téléphone</label>
+                                                                            <input type="text" class="form-control" id="phone"  name="phone" aria-describedby="phone" value="{{ old('phone') }}" required>
                                                                         </div>
                                                                     </div>
                                                                     <div class="col-md-4">
                                                                         <div class="form-group">
-                                                                            <label for="city">Ville</label>
-                                                                            <input type="text" class="form-control" id="city" name="city" aria-describedby="city" value="{{ old('city') }}">
+                                                                            <label for="gender">Genre</label>
+                                                                            <select class="form-control" id="gender" name="gender" required>
+                                                                                <option value="Male">Homme</option>
+                                                                                <option value="Female">Femme</option>
+                                                                            </select>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="col-md-4">
+                                                                        <div class="form-group">
+                                                                            <label for="birthday">Date de naissance</label>
+                                                                            <input type="date" class="form-control" id="birthday" name="birthday" aria-describedby="birthday" value="{{ old('birthday') }}" required>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-4">
+                                                                        <div class="form-group">
+                                                                            <label for="address">Adresse</label>
+                                                                            <input type="text" class="form-control" id="address" name="address" aria-describedby="address" value="{{ old('address') }}" required>
                                                                         </div>
                                                                     </div>
                                                                     <div class="col-md-4">
                                                                         <div class="form-group">
                                                                             <label for="region">Region</label>
-                                                                            <input type="text" class="form-control" id="region" name="region" aria-describedby="region" value="{{ old('region') }}">
+                                                                            <select class="form-control" id="region" name="region" required>
+                                                                                @foreach($regions as $region)
+                                                                                <option value="{{ $region->id }}">{{ $region->fr_name }} {{ $region->ar_name }}</option>
+                                                                                @endforeach
+                                                                            </select>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -101,7 +156,7 @@
                                                                     <div class="col-md-4">
                                                                         <div class="form-group">
                                                                             <label for="zipcode">Code postal</label>
-                                                                            <input type="text" class="form-control" id="zipcode" name="zipcode" aria-describedby="zipcode" value="{{ old('zipcode') }}">
+                                                                            <input type="text" class="form-control" id="zipcode" name="zipcode" aria-describedby="zipcode" value="{{ old('zipcode') }}" required>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -121,6 +176,7 @@
                             </div>
                         </div>
                         <div class="iq-card-body">
+                            <div class="table-responsive">
                                 <table id="users-table" class="table table-sm table-striped table-bordered mt-4" role="grid" aria-describedby="user-list-page-info">
                                     <thead>
                                     <tr class="text-center">
@@ -128,13 +184,16 @@
                                         <th>Nom</th>
                                         <th>prénom</th>
                                         <th>Email</th>
+                                        <th>Position</th>
+                                        <th>Grade</th>
+                                        <th>Date de grade</th>
+                                        <th>Etablissment</th>
+                                        <th>Date recrutement</th>
                                         <th>Téléphone</th>
                                         <th>Genre</th>
                                         <th>Date naissance</th>
                                         <th>Adresse</th>
-                                        <th>City</th>
                                         <th>Region</th>
-                                        <th>Code postal</th>
                                         <th>Action</th>
                                     </tr>
                                     </thead>
@@ -145,13 +204,16 @@
                                         <td class="text-center">{{ $user->first_name }}</td>
                                         <td class="text-center">{{ $user->last_name }}</td>
                                         <td class="text-center">{{ $user->email }}</td>
+                                        <td class="text-center">{{ $user->position->name }}</td>
+                                        <td class="text-center">{{ $user->grades->ar_name }}</td>
+                                        <td class="text-center">{{ Date('Y-m-d',strtotime($user->date_grade)) }}</td>
+                                        <td class="text-center">{{ $user->establishement->fr_name }}</td>
+                                        <td class="text-center">{{ Date('Y-m-d',strtotime($user->date_recrutement)) }}</td>
                                         <td class="text-center">{{ $user->phone }}</td>
                                         <td class="text-center">{{ $user->gender }}</td>
                                         <td class="text-center">{{ $user->birthday }}</td>
                                         <td class="text-center">{{ $user->address_line }}</td>
-                                        <td class="text-center">{{ $user->city }}</td>
-                                        <td class="text-center">{{ $user->region }}</td>
-                                        <td class="text-center">{{ $user->zip_code }}</td>
+                                        <td class="text-center">{{ $user->regions->ar_name }} {{ $user->regions->fr_name }}</td>
                                         <td>
                                             <div class="flex align-items-center list-user-action">
                                                 <span data-toggle="modal" data-target="#edit{{$user->id}}">
@@ -285,6 +347,7 @@
                                         @endforeach
                                     </tbody>
                                 </table>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -327,6 +390,15 @@
                 liveSearch:true,
                 noneResultsText:'Aucun résultat correspondant'
             });
+            $('#region').selectpicker({
+                liveSearch:true,
+                noneResultsText:'Aucun résultat correspondant'
+            });
+            $('#type').selectpicker({
+                liveSearch:true,
+                noneResultsText:'Aucun résultat correspondant'
+            });
+
         });
     </script>
 @endsection

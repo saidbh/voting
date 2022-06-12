@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers\Admin\Accounts;
 
-use App\Models\Contacts;
+use App\Models\contacts;
+use App\Models\establishments;
+use App\Models\regions;
+use App\Models\grades;
+use App\Models\users_type;
 use Illuminate\Routing\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Database\QueryException;
@@ -18,8 +22,12 @@ class AccountsController extends Controller
      */
     public function index()
     {
+        $establishsment = establishments::all();
+        $regions = regions::all();
+        $type = users_type::all();
+        $grades = grades::all();
         $users = Contacts::all();
-        return view('admin.users.index', compact('users'));
+        return view('admin.users.index', compact('users','establishsment','regions','type','grades'));
     }
 
     /**
@@ -46,8 +54,14 @@ class AccountsController extends Controller
             'email' => 'bail|required|email',
             'phone' => 'bail|required|string|min:8',
             'address' => 'bail|required|string',
-            'city' => 'bail|required|string',
-            'region' => 'bail|required|string',
+            'cin' => 'bail|required',
+            'cnrps' => 'bail|required',
+            'type' =>'bail|required',
+            'establishment' => 'bail|required',
+            'grade' => 'bail|required',
+            'date_grade' =>'bail|required',
+            'date_recrutement' =>'bail|required',
+            'region' => 'bail|required',
             'zipcode' => 'bail|required|string|min:4',
         ]);
         if($validator->fails()){
@@ -55,7 +69,7 @@ class AccountsController extends Controller
             return redirect()->back()->withInput();
         }
         try{
-            $contact = new Contacts();
+            $contact = new contacts();
             $contact->first_name = $request->firstName;
             $contact->last_name = $request->lastName;
             $contact->email = $request->email;
@@ -63,8 +77,14 @@ class AccountsController extends Controller
             $contact->gender = $request->gender;
             $contact->birthday = $request->birthday;
             $contact->address_line = $request->address;
-            $contact->city = $request->city;
-            $contact->region = $request->region;
+            $contact->cin = $request->cin;
+            $contact->cnrps = $request->cnrps;
+            $contact->users_type_id = $request->type;
+            $contact->establishments_id = $request->establishment;
+            $contact->grades_id = $request->grade;
+            $contact->date_grade = $request->date_grade;
+            $contact->date_recrutement = $request->date_recrutement;
+            $contact->regions_id = $request->region;
             $contact->zip_code= $request->zipcode;
             $contact->save();
 

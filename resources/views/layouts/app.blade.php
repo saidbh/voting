@@ -79,6 +79,34 @@
   <link href="https://cdnjs.cloudflare.com/ajax/libs/select2-bootstrap-theme/0.1.0-beta.10/select2-bootstrap.min.css" rel="stylesheet" />
   <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
   {{-- <link href="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css" rel="stylesheet"> --}}
+  <style>
+        .content-page2
+    { 
+    overflow: hidden;
+    padding: 100px 15px 0;
+    min-height: 100vh;
+    -webkit-transition: all 0.3s ease-out 0s;
+    -moz-transition: all 0.3s ease-out 0s;
+    -ms-transition: all 0.3s ease-out 0s;
+    -o-transition: all 0.3s ease-out 0s;
+    transition: all 0.3s ease-out 0s;
+    }
+    .custom-select {
+    width: auto;
+    display: inline-block;
+    padding: 0 5px;
+    height: 20px;
+    line-height: 20px;
+  }
+  .dropdown-menu .inner ul li {
+    position: relative;
+    font-size: 14px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
+  }
+  </style>
 </head>
 <body>
     <div id="app">

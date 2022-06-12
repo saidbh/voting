@@ -50,10 +50,13 @@ class sessions extends Model
         'l_fr_sess', 
         'date_deb_sess', 
         'date_fin_sess', 
-        'etat_session', 
+        'date_vote_start', 
+        'date_vote_end', 
+        'date_result_start', 
+        'date_result_end', 
         'annee', 
         'heure', 
         'created_at', 
-        'updated_at'
+        'updated_at',
     ];
 }

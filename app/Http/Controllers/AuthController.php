@@ -37,19 +37,10 @@ class AuthController extends Controller
         }
 
         if(Auth::attempt(["email"=>$request->email,"password"=>$request->password, "activated"=>1, "blocked"=>0, "archived"=>0])){
-//            if (Auth::user()->agency) {
-//                Session::put('user_agency_id', Auth::user()->agency->id);
-//                Session::put('user_agency_name', Auth::user()->agency->name);
-//            }
-//            if(Auth::user()->employee){
-//                Session::put('user_type', Auth::user()->employee->type->name);
-//            } else if(Auth::user()->third){
-//                Session::put('user_type', 'étudiant');
-//            }
-            if (Auth::user()->userRole->id != 3)
+            if (Auth::user()->userRole->roles_id != 2)
             {
                 return redirect()->route('admin.dashboard');
-            }elseif (Auth::user()->userRole->id == 3)
+            }elseif (Auth::user()->userRole->roles_id == 2)
             {
                 return redirect()->route('user.dashboard');
             }

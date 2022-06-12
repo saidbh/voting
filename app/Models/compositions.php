@@ -50,4 +50,8 @@ class compositions extends Model
         'created_at', 
         'updated_at'
     ];
+    public function condidate()
+    {
+        return $this->belongsTo(condidate::class, 'condidate_id','id');
+    }
 }

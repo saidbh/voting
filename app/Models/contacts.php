@@ -2,6 +2,10 @@
 
 namespace App\Models;
 
+use App\Models\establishments;
+use App\Models\regions;
+use App\Models\grades;
+use App\Models\users_type;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -64,5 +68,20 @@ class contacts extends Model
         'zip_code',
         'details',
     ];
-
+    public function establishement()
+    {
+        return $this->belongsTo(establishments::class, 'establishments_id','id');
+    }
+    public function position()
+    {
+        return $this->belongsTo(users_type::class, 'users_type_id','id');
+    }
+    public function grades()
+    {
+        return $this->belongsTo(grades::class, 'grades_id','id');
+    }
+    public function regions()
+    {
+        return $this->belongsTo(regions::class, 'regions_id','id');
+    }
 }
