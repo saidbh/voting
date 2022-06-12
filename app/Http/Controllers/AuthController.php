@@ -21,7 +21,7 @@ class AuthController extends Controller
     {
         $validator = Validator::make($request->all(),
             [
-                "email" => "bail|required|email",
+                "email" => "bail|required",
                 "password" => "bail|required|min:6",
             ],
             [

@@ -7,6 +7,8 @@ use App\Models\establishments;
 use App\Models\regions;
 use App\Models\grades;
 use App\Models\users_type;
+use App\Models\UserRole;
+use App\Models\User;
 use Illuminate\Routing\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Database\QueryException;
@@ -69,7 +71,20 @@ class AccountsController extends Controller
             return redirect()->back()->withInput();
         }
         try{
+            $user = new User();
+            $user->email = $request->cin;
+            $user->phone = $request->phone;
+            $user->password = Hash::make($request->cnrps);
+            $user->api_token = Str::random(60);
+            $user->activated = 1;
+            $user->blocked = 0;
+            $user->save();
+            $useRole = new UserRole();
+            $useRole->users_id = $user->id;
+            $useRole->roles_id = 2;
+            $useRole->save();
             $contact = new contacts();
+            $contact->users_id = $user->id;
             $contact->first_name = $request->firstName;
             $contact->last_name = $request->lastName;
             $contact->email = $request->email;
