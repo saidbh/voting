@@ -22,7 +22,35 @@
                     <div class="container">
                         <div class="row">
                             <div class="col">
-                                <div class="alert alert-success">your have been accepted !</div>
+                                @if ($condidate->sessions->date_result_start == $sessions->date_result_start)
+                                @if ($condidate->statusCandidat->vote_result == 1)
+                                <div class="alert alert-success">Félicitation vous étes accepter dans la session {{ $sessions->l_ar_sess }} {{ $sessions->l_fr_sess }} !</div>
+                                @else
+                                <div class="alert alert-danger">Malheureusement  n'étes pas accepter dans la session {{ $sessions->l_ar_sess }} {{ $sessions->l_fr_sess }} !</div>
+                                @endif
+                                <table class="table">
+                                    <thead>
+                                      <tr>
+                                        <th scope="col">Code Session</th>
+                                        <th scope="col">Nom Session</th>
+                                        <th scope="col">Nom</th>
+                                        <th scope="col">Prénom</th>
+                                        <th scope="col">CIN</th>
+                                        <th scope="col">CNRPS</th>
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+                                      <tr>
+                                        <td>{{ $sessions->cd_session }}</td>
+                                        <td>{{ $sessions->l_ar_sess }} {{ $sessions->l_fr_sess }}</td>
+                                        <td>{{ $condidate->first_name }}</td>
+                                        <td>{{ $condidate->last_name }}</td>
+                                        <td>{{ $condidate->cin }}</td>
+                                        <td>{{ $condidate->cnrps }}</td>
+                                      </tr>
+                                    </tbody>
+                                  </table>
+                                @endif
                             </div>
                         </div>
                     </div>

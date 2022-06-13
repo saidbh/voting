@@ -30,15 +30,15 @@ class ResultsController extends Controller
         } 
         if(!$sessions)
         {
-            Session::flash('error', "Vote pas encore commencer !");
+            Session::flash('error', "Pas de resultat pour le moment !");
             return redirect()->back()->withInput();
         }
         elseif(Date('Y-m-d',strtotime($sessions->date_result_start)) <= Date('Y-m-d') && Date('Y-m-d') <= Date('Y-m-d',strtotime($sessions->date_result_end)))
         {
-            return view('users.results.index');
+            return view('users.results.index',compact('sessions','condidate'));
         }else
         {
-            Session::flash('error', "Resulat de la derniere session est expirer !");
+            Session::flash('error', "Resulat est expirer !");
             return redirect()->back()->withInput();
         } 
     }
